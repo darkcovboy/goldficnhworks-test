@@ -27,30 +27,31 @@ namespace Game.Scripts.Test
 
             if (Physics.Raycast(ray, out hit, _interactionDistance, _interactionLayerMask))
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
-                if (interactable is { CanInteract: true })
+                if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
                     _currentInteractable = interactable;
                     return;
                 }
             }
 
-            ClearCurrentInteractable();
+            _currentInteractable.Release();
+            _currentInteractable = null;
         }
 
         private void HandleInteractionInput()
         {
-            if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null)
+            if (_currentInteractable == null)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 _currentInteractable.Interact();
             }
-        }
 
-        private void ClearCurrentInteractable()
-        {
-            _currentInteractable = null;
-
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                _currentInteractable.Release();
+            }
         }
     }
 }
