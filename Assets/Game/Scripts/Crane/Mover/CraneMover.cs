@@ -8,20 +8,25 @@ namespace Game.Scripts.Crane.Mover
 {
     public class CraneMover : MonoBehaviour
     {
-        [Header("Parts")] [SerializeField] private Transform _hook;
+        [Header("Части для движения")] [SerializeField] private Transform _hook;
         [SerializeField] private Transform _basePart;
         [SerializeField] private Transform _crane;
+        [SerializeField] private Transform _reel;
 
-        [Header("Speeds")] [SerializeField] private float _upSpeed = 2f;
+        [Header("Скорость движения")] [SerializeField] private float _upSpeed = 2f;
         [SerializeField] private float _downSpeed = 2f;
         [SerializeField] private float _northSpeed = 3f;
         [SerializeField] private float _southSpeed = 3f;
         [SerializeField] private float _eastSpeed = 3f;
         [SerializeField] private float _westSpeed = 3f;
 
-        [Header("Limits")] [SerializeField] private Vector2 _limitX = new Vector2(-5f, 5f);
+        [Header("Лимиты для движения")] [SerializeField] private Vector2 _limitX = new Vector2(-5f, 5f);
         [SerializeField] private Vector2 _limitY = new Vector2(0f, 5f);
         [SerializeField] private Vector2 _limitZ = new Vector2(-5f, 5f);
+        
+        [Header("Настройки катушки")]
+        [SerializeField] private float _reelRotationSpeed = 200f;
+        [SerializeField] private AudioSource _reelAudio;
 
         private Vector3 _hookVelocity;
         private Vector3 _baseVelocity;
@@ -53,6 +58,25 @@ namespace Game.Scripts.Crane.Mover
             MoveHook();
             MoveBase();
             MoveCrane();
+            RotateReel();
+        }
+
+        private void RotateReel()
+        {
+            if (Mathf.Abs(_hookVelocity.y) > 0.01f)
+            {
+                float dir = Mathf.Sign(_hookVelocity.y);
+                _reel.Rotate(Vector3.right * dir * _reelRotationSpeed * Time.deltaTime);
+
+                if (!_reelAudio.isPlaying)
+                    _reelAudio.Play();
+            }
+            else
+            {
+                if (_reelAudio.isPlaying)
+                    _reelAudio.Stop();
+            }
+
         }
 
         private void MoveHook()

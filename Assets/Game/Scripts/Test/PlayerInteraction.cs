@@ -34,7 +34,7 @@ namespace Game.Scripts.Test
                 }
             }
 
-            _currentInteractable.Release();
+            _currentInteractable?.Release();
             _currentInteractable = null;
         }
 
