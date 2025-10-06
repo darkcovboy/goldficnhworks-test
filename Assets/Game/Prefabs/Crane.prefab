@@ -580,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4942421611317834007}
   - component: {fileID: 4437414955675977024}
-  - component: {fileID: 3957304407410539559}
+  - component: {fileID: 273615331779734926}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -707,7 +707,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &3957304407410539559
+--- !u!114 &273615331779734926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -716,12 +716,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5247162075758751288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64f439fd067477ab93ea539f48b0c33, type: 3}
+  m_Script: {fileID: 11500000, guid: eb2c4b415403493f8ef51cfd0f049a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 4437414955675977024}
   _startPoint: {fileID: 7284407683080554864}
-  _endPoint: {fileID: 6194521643482147733}
+  _endPoint: {fileID: 5886087108756990286}
 --- !u!1 &5333571607879962383
 GameObject:
   m_ObjectHideFlags: 0

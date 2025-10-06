@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Test
+﻿namespace Game.Scripts
 {
     public interface IInteractable
     {
